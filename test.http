@@ -1,0 +1,23 @@
+###
+POST http://127.0.0.1:7000/api/v1/user/signin HTTP/1.1
+content-type: application/json
+
+{
+    "email": "bssdssas@glail.col",
+    "password": "RI4_pDWfp3NW"
+}
+
+
+###
+POST http://127.0.0.1:7000/api/v1/user/create HTTP/1.1
+Content-Type: application/json
+
+{
+    "firstname": "bilal",
+    "lastname": "meddah",
+    "email": "bssdssas@glail.col",
+    "phone": "+21366172712",
+    "role": "specialist_admin",
+    "state": "Algiers",
+    "city": "Algiers"
+}
