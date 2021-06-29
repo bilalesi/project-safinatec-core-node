@@ -9,6 +9,14 @@ interface IAuthenticateBody {
     email: string,
     password: string
 }
+interface IJwtPayload{
+    iss: string,
+    aud: string,
+    exp: number,
+    user: string,
+    role: string,
+    iat: number
+}
 interface ICreateUserBody {
     firstname: string, 
     lastname: string,
@@ -75,13 +83,13 @@ function user_routes_handlers(server: FastifyInstance, opts: FastifyRegisterOpti
                 if(payload){
                     let _user = await do_gather_user_profile(payload.user);
                     console.log('____user: ', _user)
-                    if(!_user?.configuration.password_resetted){
-                        reply.code(200);
-                        return ({
-                            use_authenticated: true,
-                            must_redirect_reset_credentials: true,
-                        })
-                    }
+                    // if(!_user?.configuration.password_resetted){
+                    //     reply.code(200);
+                    //     return ({
+                    //         use_authenticated: true,
+                    //         must_redirect_reset_credentials: true,
+                    //     })
+                    // }
                     if(_user){
                         console.log('_user: ', _user);
                         let token = this.jwt.sign(payload);
@@ -161,6 +169,57 @@ function user_routes_handlers(server: FastifyInstance, opts: FastifyRegisterOpti
         }
     })
 
+    // get profile 
+    server.route<{Body: ICreateUserBody}>({
+        method: 'GET',
+        url: '/user/profile',
+        schema: {
+            response: {
+                202: {
+                    type: 'object',
+                    properties: {
+                        _id: { type: 'string' },
+                        configuration: {
+                            role: { type: 'string' },
+                            password_resetted: { type: 'boolean' },
+                        },
+                        firstname: { type: 'string' },
+                        lastname: { type: 'string' },
+                        email: { type: 'string' },
+                        phone: { type: 'string' },
+                        address: {
+                            state: { type: 'string' },
+                            city: { type: 'string' },
+                        },
+                        updatedAt: { type: 'string' },
+                    }
+                },
+            }
+        },
+        preHandler: async function(request, reply, next){
+            try {
+                return await request.jwtVerify();
+            } catch (error) {
+                return error
+            }
+        },
+        handler: async function(request, reply){
+            try {
+                let { user: userId } = <IJwtPayload>request.user;
+                let user = await do_gather_user_profile(userId);
+                if(user){
+                    reply.code(202);
+                    return user;
+                }
+                reply.code(404)
+                let err =  new Error();
+                err.message= 'User not found';
+                throw err;
+            } catch (error) {
+                return error;
+            }
+        }
+    })
 
     done()
 }

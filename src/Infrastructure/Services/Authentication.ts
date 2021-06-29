@@ -1,4 +1,3 @@
-import { RouteShorthandOptions } from 'fastify';
 import { IUserRoles } from "../../Configuration/Predefined";
 import UserRepositoryPort from '../Ports/UserRepositoryPort';
 import UserAuthenticate, { IAuthenticatedUser } from '../../Core/Usecases/user_authenticate';
@@ -60,6 +59,8 @@ async function do_gather_user_profile(id: string){
         return null;
     }
 }
+
+
 export {
     do_generate_payload_authenticate,
     do_create_user,

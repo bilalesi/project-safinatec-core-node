@@ -15,9 +15,40 @@ Content-Type: application/json
 {
     "firstname": "bilal",
     "lastname": "meddah",
-    "email": "bssdssas@glail.col",
+    "email": "bssdssasb@glail.col",
     "phone": "+21366172712",
     "role": "specialist_admin",
     "state": "Algiers",
     "city": "Algiers"
+}
+
+### gether user profile
+GET http://127.0.0.1:7000/api/v1/user/profile HTTP/1.1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzYWZpbmF0ZWMuY29tIiwiYXVkIjoiYWRtaW5pc3RyYXRpb24iLCJleHAiOjE2MjUwMDc1OTksInVzZXIiOiI2MGQ5MzQyMDBjYTA0MDRkODM2NGQ3YTUiLCJyb2xlIjoic3BlY2lhbGlzdF9hZG1pbiIsImlhdCI6MTYyNDkwNTE2MX0.zXz-Aijh-ISG0WbFl-KuOPqLplGvicIsbpNnLnTlSpM
+
+### create mind
+POST http://127.0.0.1:7000/api/v1/minds/create-mind HTTP/1.1
+Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzYWZpbmF0ZWMuY29tIiwiYXVkIjoiYWRtaW5pc3RyYXRpb24iLCJleHAiOjE2MjUwMDc1OTksInVzZXIiOiI2MGQ5MzQyMDBjYTA0MDRkODM2NGQ3YTUiLCJyb2xlIjoic3BlY2lhbGlzdF9hZG1pbiIsImlhdCI6MTYyNDkwNTE2MX0.zXz-Aijh-ISG0WbFl-KuOPqLplGvicIsbpNnLnTlSpM
+
+{
+    "firstname": "bilal",
+    "lastname": "bilal",
+    "state": "bilal",
+    "city": "bilal",
+    "phone": "bilal",
+    "email": "bilal",
+    "website": "bilal",
+    "facebook": "bilal",
+    "twitter": "bilal",
+    "linkedin": "bilal",
+    "youtube": "bilal",
+    "instagram": "bilal",
+    "description": "bilal",
+    "link": "bilal",
+    "title": "bilal",
+    "picture": "bilal",
+    "video_link": "bilal",
+    "interview": "bilal"
 }

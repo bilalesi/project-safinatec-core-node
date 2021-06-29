@@ -20,7 +20,7 @@ interface IMindAddress{
 }
 export default class TEvent {
     firstname: string;
-    lastName: string;
+    lastname: string;
     address: IMindAddress;
     contact: IMindContact;
     overview: IMindOverview;
@@ -28,9 +28,10 @@ export default class TEvent {
     picture: string;
     video_link?: string;
     interview: string;
+    is_published?: boolean;
     constructor(
         firstname: string,
-        lastName: string,
+        lastname: string,
         state: string, city: string,
         overview_description: string,
         overview_link: string,
@@ -48,7 +49,7 @@ export default class TEvent {
         instagram: string,
     ){
         this.firstname = firstname;
-        this.lastName = lastName;
+        this.lastname = lastname;
         this.address = {
             state: state, 
             city: city
@@ -71,6 +72,7 @@ export default class TEvent {
         this.picture = picture;
         this.video_link = video_link;
         this.interview = interview;
+        this.is_published= false;
     }
 
 }

@@ -29,6 +29,7 @@ server.register(jwt, {
 });
 
 server.register(require('./Routes/UserRoutes'), { prefix: 'api/v1'});
+server.register(require('./Routes/MindRoutes'), { prefix: 'api/v1'});
 
 
 let $port: string = (process.env.PORT as string);

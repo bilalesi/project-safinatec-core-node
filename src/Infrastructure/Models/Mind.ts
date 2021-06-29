@@ -1,9 +1,36 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, Document, Model } from 'mongoose';
 
+export interface IMMind extends Document{
+    firstname: string,
+    lastname: string,
+    address: {
+        state: string,
+        city: string,
+    },
+    contact: {
+        phone: string,
+        email: string,
+        website: string,
+        facebook: string,
+        twitter: string,
+        linkedin: string,
+        youtube: string,
+        instagram: string,
+    },
+    overview: {
+        description: string,
+        link: string,
+    },
+    title: string,
+    picture: string,
+    video_link: string,
+    interview: string,
+    is_published: boolean
+}
 
-const Mind: Schema = new Schema({
+const MindSchema: Schema = new Schema({
     firstname: String,
-    lastName: String,
+    lastname: String,
     address: {
         state: String,
         city: String,
@@ -26,9 +53,12 @@ const Mind: Schema = new Schema({
     picture: String,
     video_link: String,
     interview: String,
+    is_published: Boolean
 }, { 
     timestamps: true 
 });
 
 
-export default model('mind', Mind);
+const Mind: Model<IMMind> = model("mind", MindSchema);
+
+export default Mind;
